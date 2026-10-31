@@ -3,7 +3,7 @@
 The standalone public website for Daystack, published with GitHub Pages.
 
 - Repository: https://github.com/avick-saha/daystack-website
-- Privacy policy: https://avick-saha.github.io/daystack-website/privacy/
+- Privacy policy: https://daystack.wakubo.in/privacy/
 
 The site is plain HTML with local Barlow fonts. It has no build step, JavaScript, analytics, or external dependencies. The font license is in `privacy/assets/Barlow-OFL.txt`.
 
@@ -12,7 +12,7 @@ The site is plain HTML with local Barlow fonts. It has no build step, JavaScript
 GitHub Pages publishes the root of the `main` branch. Push a commit to update the site:
 
 ```sh
-git add index.html privacy README.md .gitignore .gitattributes .nojekyll
+git add index.html privacy CNAME README.md .gitignore .gitattributes .nojekyll
 git commit -m "Update website"
 git push origin main
 ```
@@ -29,6 +29,12 @@ When working inside the Android workspace, `scripts/prepare_play_assets.py` gene
 
 ## Custom domain
 
-The policy currently references `https://daystack.wakubo.in/privacy`. Connecting that address requires configuring a custom domain in this repository's Pages settings and the domain's DNS. Until that is configured, use the GitHub Pages URL above.
+GitHub Pages uses `daystack.wakubo.in` as the custom domain, also recorded in the root `CNAME` file. The domain's DNS must contain this record in the `wakubo.in` zone:
+
+| Type | Name | Target | TTL |
+| --- | --- | --- | --- |
+| CNAME | `daystack` | `avick-saha.github.io` | Default |
+
+The target is only the hostname, without `https://` or a repository path. Once DNS resolves, GitHub can provision the domain's HTTPS certificate. Verify the certificate and enable **Enforce HTTPS** in the repository's Pages settings when available. The custom URL will not work until DNS and certificate provisioning finish.
 
 See [GitHub's custom domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
