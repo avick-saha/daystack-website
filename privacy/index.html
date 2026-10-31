@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="How Daystack stores your tasks on your device, handles its optional widget, and protects your privacy.">
+  <title>Daystack Privacy Policy | wakubo</title>
+  <style>
+    @font-face {
+      font-family: Barlow;
+      src: url('./assets/barlow_regular.ttf') format('truetype');
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: Barlow;
+      src: url('./assets/barlow_extrabold.ttf') format('truetype');
+      font-weight: 800;
+      font-display: swap;
+    }
+
+    /* The same seven Monochrome surfaces and typography as the planner. */
+    :root {
+      color-scheme: light dark;
+      --day-1: #dadada;
+      --day-2: #d2d2d2;
+      --day-3: #c9c9c9;
+      --day-4: #c1c1c1;
+      --day-5: #b2b2b2;
+      --day-6: #a6a4a4;
+      --day-7: #969494;
+      --text: #2a2a2a;
+      --secondary: #535353;
+      --accent: #ff650a;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--day-7); color: var(--text); font: 400 18px/1.6 Barlow, system-ui, sans-serif; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+    .wrap { width: min(100%, 1120px); margin-inline: auto; padding-inline: 40px; }
+    .skip-link { position: absolute; top: 12px; left: 16px; z-index: 1; padding: 12px 16px; background: var(--text); color: var(--day-1); transform: translateY(-200%); }
+    .skip-link:focus { transform: translateY(0); }
+    .masthead { background: var(--day-1); }
+    .brand { display: flex; align-items: center; gap: 10px; padding-block: 32px; font-size: 20px; font-weight: 800; letter-spacing: -.4px; text-transform: uppercase; }
+    .brand-mark { display: grid; align-content: end; gap: 3px; width: 24px; height: 28px; padding-bottom: 2px; }
+    .brand-mark i { display: block; height: 5px; border-radius: 1px; background: var(--text); }
+    .brand-mark i:nth-child(1) { opacity: .4; }
+    .brand-mark i:nth-child(2) { opacity: .65; }
+    h1, h2, .footer-title { font-weight: 800; text-transform: uppercase; }
+    h1 { max-width: 14ch; margin: 22px 0 36px; font-size: clamp(44px, 6vw, 76px); line-height: .98; letter-spacing: -1.5px; overflow-wrap: anywhere; }
+    .policy-label { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--secondary); font-size: 14px; }
+    .policy-label::before { content: ''; width: 8px; height: 8px; background: var(--accent); }
+    .metadata { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; max-width: 720px; margin: 0; padding-bottom: 48px; }
+    .metadata div { min-width: 0; }
+    dt { color: var(--secondary); font-size: 14px; }
+    dd { margin: 2px 0 0; overflow-wrap: anywhere; }
+    dd a { display: inline-flex; align-items: center; min-height: 44px; margin-block: -7px; }
+    .policy-section { background: var(--band); scroll-margin-top: 24px; }
+    .policy-section:nth-child(1) { --band: var(--day-2); }
+    .policy-section:nth-child(2) { --band: var(--day-3); }
+    .policy-section:nth-child(3) { --band: var(--day-4); }
+    .policy-section:nth-child(4) { --band: var(--day-5); }
+    .policy-section:nth-child(5) { --band: var(--day-6); }
+    .policy-section:nth-child(n+6) { --band: var(--day-7); }
+    .section-layout { display: grid; grid-template-columns: 40px minmax(0, 280px) minmax(0, 1fr); gap: 24px; padding-block: 40px 44px; }
+    .section-number { padding-top: 4px; font-size: 14px; font-variant-numeric: tabular-nums; }
+    h2 { margin: 0; font-size: 28px; line-height: 1.08; letter-spacing: -.4px; overflow-wrap: anywhere; }
+    .policy-copy { margin: 0; max-width: 66ch; white-space: pre-line; overflow-wrap: anywhere; }
+    footer { background: var(--day-7); }
+    .footer-layout { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding-block: 40px 32px; border-top: 1px solid currentColor; }
+    .footer-title { margin: 0 0 8px; font-size: 28px; line-height: 1.1; }
+    .footer-layout a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+    .back-to-top { flex-shrink: 0; font-size: 16px; }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --day-1: #666666;
+        --day-2: #5c5c5c;
+        --day-3: #505050;
+        --day-4: #444444;
+        --day-5: #383838;
+        --day-6: #2d2d2d;
+        --day-7: #222222;
+        --text: #f1f1f1;
+        --secondary: #e5e5e5;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .wrap { padding-inline: 24px; }
+      .brand { padding-block: 24px; }
+      h1 { margin-top: 20px; }
+      .section-layout { grid-template-columns: 28px minmax(0, 1fr); gap: 16px; padding-block: 32px 36px; }
+      .policy-copy { grid-column: 2; }
+      h2 { max-width: 24ch; }
+    }
+
+    @media (max-width: 480px) {
+      .wrap { padding-inline: 22px; }
+      .metadata { grid-template-columns: 1fr; gap: 16px; padding-bottom: 32px; }
+      .section-layout { column-gap: 12px; }
+      .footer-layout { align-items: start; flex-direction: column; gap: 16px; padding-block: 32px 24px; }
+    }
+
+    @media print {
+      :root { --text: #000; --secondary: #333; }
+      body, .masthead, .policy-section, footer { background: #fff; }
+      .wrap { max-width: none; padding-inline: 0; }
+      .brand { padding-block: 0; }
+      h1 { font-size: 36px; }
+      .section-layout { display: block; padding-block: 16px; }
+      h2 { margin-bottom: 8px; break-after: avoid; }
+      .section-number, .skip-link, .back-to-top { display: none; }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip-link" href="#policy">Skip to policy</a>
+  <header class="masthead">
+    <div class="wrap">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>Daystack</div>
+      <p class="policy-label">Privacy &amp; your data</p>
+      <h1>Daystack Privacy Policy</h1>
+      <dl class="metadata">
+        <div><dt>Publisher</dt><dd>wakubo</dd></div>
+        <div><dt>Contact</dt><dd><a href="mailto:admin@wakubo.co.in">admin@wakubo.co.in</a></dd></div>
+        <div><dt>Effective date</dt><dd>31 October 2026</dd></div>
+        <div><dt>Public policy</dt><dd><a href="https://daystack.wakubo.in/privacy">https://daystack.wakubo.in/privacy</a></dd></div>
+      </dl>
+    </div>
+  </header>
+  <main id="policy" tabindex="-1" aria-label="Privacy policy">
+    <section class="policy-section" aria-labelledby="section-1">
+      <div class="wrap section-layout">
+        <span class="section-number" aria-hidden="true">01</span>
+        <h2 id="section-1">What Daystack stores</h2>
+        <p class="policy-copy">Daystack is an offline weekly task planner. Task titles, assigned weekdays, order and completion state are stored in the app&#x27;s private storage on your device. The app also keeps local UI state and widget scheduling metadata. No account is required.</p>
+      </div>
+    </section>
+    <section class="policy-section" aria-labelledby="section-2">
+      <div class="wrap section-layout">
+        <span class="section-number" aria-hidden="true">02</span>
+        <h2 id="section-2">Collection and advertising</h2>
+        <p class="policy-copy">Daystack does not send your tasks, usage analytics, advertising identifiers or device identifiers to wakubo. The app has no advertising, analytics or cloud-sync SDK and does not request Internet access. We do not sell task data or use it for advertising.</p>
+      </div>
+    </section>
+    <section class="policy-section" aria-labelledby="section-3">
+      <div class="wrap section-layout">
+        <span class="section-number" aria-hidden="true">03</span>
+        <h2 id="section-3">Optional home-screen widget</h2>
+        <p class="policy-copy">When you add the widget, Android and your current home-screen launcher display today&#x27;s task titles and completion state on your home screen. People who can see your screen may see those tasks. To use the same fonts as the app, Daystack creates local rendered text images and grants the current launcher read-only access to those specific images. It does not grant access to the task database or arbitrary app files. The widget is optional; remove it through your launcher to stop displaying tasks.</p>
+      </div>
+    </section>
+    <section class="policy-section" aria-labelledby="section-4">
+      <div class="wrap section-layout">
+        <span class="section-number" aria-hidden="true">04</span>
+        <h2 id="section-4">Retention and deletion</h2>
+        <p class="policy-copy">Tasks remain on your device until you delete them or clear the app&#x27;s storage. Deleting a task removes it from the planner. Rendered widget images can remain temporarily in private storage: images unused for seven days are removed during subsequent widget cache cleanup, and removing the last widget clears those images. Clearing app storage or uninstalling removes the app&#x27;s local data. Daystack does not provide a cloud account or cloud recovery. Android app-data backups are disabled by the app&#x27;s configuration.</p>
+      </div>
+    </section>
+    <section class="policy-section" aria-labelledby="section-5">
+      <div class="wrap section-layout">
+        <span class="section-number" aria-hidden="true">05</span>
+        <h2 id="section-5">Permissions and background work</h2>
+        <p class="policy-copy">Android&#x27;s background-work components refresh the widget after date/time changes and device restarts. Daystack does not read your calendar, contacts, location, microphone, photos or advertising ID. Its launcher lookup is used only to provide widget images to the active home-screen launcher.</p>
+      </div>
+    </section>
+    <section class="policy-section" aria-labelledby="section-6">
+      <div class="wrap section-layout">
+        <span class="section-number" aria-hidden="true">06</span>
+        <h2 id="section-6">External links and support</h2>
+        <p class="policy-copy">Opening the public privacy webpage uses your chosen browser. Emailing admin@wakubo.co.in uses your email app. Those services handle their own connections. If you choose to contact wakubo, we receive the information you include in your message and use it to respond; do not include private task content unless you want to share it for support.</p>
+      </div>
+    </section>
+    <section class="policy-section" aria-labelledby="section-7">
+      <div class="wrap section-layout">
+        <span class="section-number" aria-hidden="true">07</span>
+        <h2 id="section-7">Children</h2>
+        <p class="policy-copy">Daystack is a general-purpose productivity tool and does not knowingly collect personal information from children. Parents and guardians should supervise use of a shared device. The Play listing&#x27;s target-audience choices will be maintained by the publisher.</p>
+      </div>
+    </section>
+    <section class="policy-section" aria-labelledby="section-8">
+      <div class="wrap section-layout">
+        <span class="section-number" aria-hidden="true">08</span>
+        <h2 id="section-8">Policy changes</h2>
+        <p class="policy-copy">This policy will be updated if the app&#x27;s data practices change. Review the effective date above. For privacy questions, contact admin@wakubo.co.in.</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">
+      <div class="footer-layout">
+        <div>
+          <p class="footer-title">Privacy questions?</p>
+          <a href="mailto:admin@wakubo.co.in">Contact wakubo &rarr;</a>
+        </div>
+        <a class="back-to-top" href="#top">Back to top &uarr;</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
